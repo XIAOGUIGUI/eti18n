@@ -1,0 +1,22 @@
+{
+  "name": "eti18n",
+  "version": "1.0.0",
+  "description": "Internationalized excel documents into js files",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XIAOGUIGUI/eti18n.git"
+  },
+  "keywords": [
+    "i18n"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/XIAOGUIGUI/eti18n/issues"
+  },
+  "homepage": "https://github.com/XIAOGUIGUI/eti18n#readme"
+}
