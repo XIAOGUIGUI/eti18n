@@ -6,6 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bin": {
+    "eti18n": "bin/eti18n.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/XIAOGUIGUI/eti18n.git"
@@ -18,5 +21,14 @@
   "bugs": {
     "url": "https://github.com/XIAOGUIGUI/eti18n/issues"
   },
-  "homepage": "https://github.com/XIAOGUIGUI/eti18n#readme"
+  "homepage": "https://github.com/XIAOGUIGUI/eti18n#readme",
+  "dependencies": {
+    "chalk": "^2.3.1",
+    "commander": "^2.14.1",
+    "ejs": "^2.5.7",
+    "lodash-node": "^3.10.2",
+    "mkdirp": "^0.5.1",
+    "update-notifier": "^2.3.0",
+    "xlsx": "^0.12.2"
+  }
 }
