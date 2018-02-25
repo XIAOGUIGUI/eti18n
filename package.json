@@ -1,6 +1,6 @@
 {
   "name": "eti18n",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Internationalized excel documents into js files",
   "main": "index.js",
   "scripts": {

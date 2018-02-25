@@ -13,7 +13,8 @@ const XLSX = require('xlsx');
 let option = {
   filePath: './i18n',
   generatePath: './lang',
-  configPath: './config.json'
+  configPath: './config.json',
+  position: 'column'
 }
 let config = {
   fileName: {
@@ -35,6 +36,7 @@ program
   .option('-f, --file <excelName>', 'set excel file path when into')
   .option('-c, --config', 'config file path')
   .option('-p, --path', 'generate the folder path')
+  .option('-r, --row', 'config excel lang position row')
   .parse(process.argv)
 if (program.file){
   if (/\.(xls|xlsx)$/i.test(program.file)) {
@@ -66,6 +68,10 @@ if (program.config){
     return false
   }
 }
+if (program.row){
+  option.position = 'row'
+}
+console.log(option)
 /**
  * 
  * 
@@ -123,9 +129,40 @@ let fomatLangInfo = object => {
   }
   return result
 }
+let fomatColumnData = list => {
+  let result = []
+  let listLength = list.length
+  if (listLength === 0 ) {
+    return false
+  }
+  for (let key in list[0]) {
+    if (key !== '语言') {
+      result.push({
+        '语言': key
+      })
+    }
+  }
+  console.log(result)
+  for(let i = 0; i < listLength; i++) {
+    let keyName = ''
+    let j = 0
+    for (let key in list[i]) {
+      if (key === '语言') {
+        keyName = list[i][key]
+      } else {
+        result[j-1][keyName] = list[i][key]
+      }
+      j++
+    }
+  }
+  return result
+}
 // 生成对应语言文件
 let generateFile = () => {
   let langList = getLangList()
+  if (option.position === 'column') {
+    langList = fomatColumnData(langList)
+  }
   let listLength = langList.length
   for(let i = 0; i < listLength; i++) {
     let data = fomatLangInfo(langList[i])
