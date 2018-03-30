@@ -34,12 +34,11 @@ updateNotifier({ pkg, updateCheckInterval: 0 }).notify()
 program
   .version(pkg.version)
   .option('-f, --file <excelName>', 'set excel file path when into')
-  .option('-c, --config', 'config file path')
-  .option('-p, --path', 'generate the folder path')
+  .option('-c, --config <configPath>', 'config file path')
+  .option('-p, --path <generatePath>', 'generate the folder path')
   .option('-e, --excel', 'generate excel file by zh-cn.js')
   .option('-r, --row', 'config excel lang position row')
   .parse(process.argv)
-
 let validateExcelFile = () => {
   if (program.file){
     if (/\.(xls|xlsx)$/i.test(program.file)) {
