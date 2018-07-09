@@ -37,7 +37,6 @@ program
   .option('-c, --config <configPath>', 'config file path')
   .option('-p, --path <generatePath>', 'generate the folder path')
   .option('-e, --excel', 'generate excel file by zh-cn.js')
-  .option('-r, --row', 'config excel lang position row')
   .parse(process.argv)
 let validateExcelFile = () => {
   if (program.file){

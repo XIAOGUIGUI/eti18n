@@ -20,20 +20,26 @@ let regexValueByList = value => {
   for (let i = 0; i < regexList.length; i++) {
     if (regexList[i].key === '{{}}') {
       let firstIndex = value.indexOf('{{')
-      let lastIndex = value.indexOf('}}')
+      let lastIndex
+      if (regexList[i].type && regexList[i].type === 'include') {
+        lastIndex = value.lastIndexOf('}}')
+      } else {
+        lastIndex = value.indexOf('}}')
+      }
       let key = value.substring(firstIndex, lastIndex + 2)
+      key = key.replace(/([*.?+$^\[\](){}|\\/])/g, '\\$1')
       let keyData = value.substring(firstIndex + 2, lastIndex)
       let regexKey = new RegExp(key, 'g')
       value = value.replace(regexKey, regexList[i].result[0] + keyData + regexList[i].result[1])
     } else {
       let regexKey = new RegExp(regexList[i].key, 'g')
       value = value.replace(regexKey, regexList[i].result)
-    }
-    
+    } 
   }
   return value
 }
 module.exports = (object, keyName, config) => {
+  regexList = []
   getRegexList(object['匹配'], keyName, config)
   for(let key in object) {
     if (key !== '匹配' && key !== '属性名') {
