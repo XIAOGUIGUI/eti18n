@@ -31,12 +31,12 @@ module.exports = (option, config) => {
     console.log(chalk.red(error))
     return false
   }
-  
-  // if (option.position === 'column') {
-  //   langList = fomatColumnData(langList)
-  // }
   for(let i = 0; i < listLength; i++) {
     let data = fomatLangInfo(langList[i], config)
+    data.variableName = config.variableName
+    if (data.variableName !== 'module.exports') {
+      data.variableName = data.variableName + '["' + data.fileName + '"]'
+    }
     let compiledData = ejs.render(template, data)
     mkdirp(option.generatePath, function (err) {
       if(err) {

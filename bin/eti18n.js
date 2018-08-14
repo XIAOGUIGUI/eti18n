@@ -24,6 +24,7 @@ let config = {
     '繁体中文(台湾)': 'zh-tw',
     '印尼语': 'id'
   },
+  variableName: 'module.exports',
   langs: ['中文', '英文'],
   keyName: {},
   regex: {}
@@ -37,7 +38,6 @@ program
   .option('-c, --config <configPath>', 'config file path')
   .option('-p, --path <generatePath>', 'generate the folder path')
   .option('-e, --excel', 'generate excel file by zh-cn.js')
-  .option('-r, --row', 'config excel lang position row')
   .parse(process.argv)
 let validateExcelFile = () => {
   if (program.file){
@@ -128,6 +128,9 @@ if (fs.existsSync(option.configPath)) {
     let customConfig = JSON.parse(data)
     if (customConfig.fileName) {
       config.fileName = Object.assign(config.fileName, customConfig.fileName)
+    }
+    if (customConfig.variableName) {
+      config.variableName = customConfig.variableName
     }
     if (customConfig.keyName) {
       config.keyName = Object.assign(config.keyName, customConfig.keyName)
