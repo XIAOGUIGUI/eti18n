@@ -17,7 +17,7 @@ module.exports = (object, config) => {
         let i = keyList.length - 1
         let temp = {}
         do {
-          let name = keyList[i]
+          let name = keyList[i].replace(/(^\s*)|(\s*$)/g, "")
           if (config.keyName[name]) {
             name = config.keyName[name]
           }
@@ -33,7 +33,7 @@ module.exports = (object, config) => {
         result.content = _.merge(result.content, temp)
       } else {
         if (config.keyName[key]) {
-          contentKey = config.keyName[key]
+          contentKey = config.keyName[key].replace(/(^\s*)|(\s*$)/g, "")
         }
         result.content[contentKey] = object[key].replace(/(^\s*)|(\s*$)/g, "")
       }
